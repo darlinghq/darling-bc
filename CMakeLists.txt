@@ -27,7 +27,7 @@ add_definitions(
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -nostdinc -fwrapv -fPIC -funsigned-char")
 
-add_library(bcstatic STATIC
+add_library(bcstatic OBJECT
 	lib/getopt.c
 	lib/getopt1.c
 	lib/number.c
@@ -43,8 +43,8 @@ add_darling_executable(bc
 	bc/storage.c
 	bc/util.c
 	bc/global.c
+	$<TARGET_OBJECTS:bcstatic>
 )
-target_link_libraries(bc bcstatic)
 
 add_darling_executable(dc
 	dc/dc.c
@@ -54,8 +54,8 @@ add_darling_executable(dc
 	dc/array.c
 	dc/numeric.c
 	dc/string.c
+	$<TARGET_OBJECTS:bcstatic>
 )
-target_link_libraries(dc bcstatic)
 
 install(TARGETS bc dc DESTINATION libexec/darling/usr/bin)
 
