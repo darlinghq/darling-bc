@@ -27,7 +27,7 @@ add_definitions(
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -nostdinc -fwrapv -fPIC -funsigned-char")
 
-add_library(bcstatic OBJECT
+add_darling_object_library(bcstatic
 	lib/getopt.c
 	lib/getopt1.c
 	lib/number.c
