@@ -11,8 +11,6 @@ include_directories(
 	${CMAKE_CURRENT_SOURCE_DIR}/bc
 	${CMAKE_CURRENT_SOURCE_DIR}/dc
 	${CMAKE_CURRENT_SOURCE_DIR}/h
-	${DARLING_TOP_DIRECTORY}/src/libc/include/FreeBSD
-	${DARLING_TOP_DIRECTORY}/src/libc/gen
 )
 
 add_definitions(
