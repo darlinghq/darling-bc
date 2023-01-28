@@ -8,9 +8,10 @@ cmake_policy(SET CMP0005 NEW)
 include(darling_exe)
 
 include_directories(
-	${CMAKE_CURRENT_SOURCE_DIR}/bc
-	${CMAKE_CURRENT_SOURCE_DIR}/dc
-	${CMAKE_CURRENT_SOURCE_DIR}/h
+	${CMAKE_CURRENT_SOURCE_DIR}/bc/bc
+	${CMAKE_CURRENT_SOURCE_DIR}/bc/dc
+	${CMAKE_CURRENT_SOURCE_DIR}/bc/h
+	${CMAKE_CURRENT_SOURCE_DIR}/gen
 )
 
 add_definitions(
@@ -26,35 +27,35 @@ add_definitions(
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -nostdinc -fwrapv -fPIC -funsigned-char")
 
 add_darling_object_library(bcstatic
-	lib/getopt.c
-	lib/getopt1.c
-	lib/number.c
-	lib/vfprintf.c
+	bc/lib/getopt.c
+	bc/lib/getopt1.c
+	bc/lib/number.c
+	bc/lib/vfprintf.c
 )
 
 add_darling_executable(bc
-	bc/main.c
-	bc/bc.c
-	bc/scan.c
-	bc/execute.c
-	bc/load.c
-	bc/storage.c
-	bc/util.c
-	bc/global.c
+	bc/bc/main.c
+	bc/bc/bc.c
+	bc/bc/scan.c
+	bc/bc/execute.c
+	bc/bc/load.c
+	bc/bc/storage.c
+	bc/bc/util.c
+	bc/bc/global.c
 	$<TARGET_OBJECTS:bcstatic>
 )
 
 add_darling_executable(dc
-	dc/dc.c
-	dc/misc.c
-	dc/eval.c
-	dc/stack.c
-	dc/array.c
-	dc/numeric.c
-	dc/string.c
+	bc/dc/dc.c
+	bc/dc/misc.c
+	bc/dc/eval.c
+	bc/dc/stack.c
+	bc/dc/array.c
+	bc/dc/numeric.c
+	bc/dc/string.c
 	$<TARGET_OBJECTS:bcstatic>
 )
 
 install(TARGETS bc dc DESTINATION libexec/darling/usr/bin)
 
-install(FILES doc/bc.1 doc/dc.1 DESTINATION libexec/darling/usr/share/man/man1)
+install(FILES bc/doc/bc.1 bc/doc/dc.1 DESTINATION libexec/darling/usr/share/man/man1)
