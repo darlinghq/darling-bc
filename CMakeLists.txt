@@ -1,6 +1,6 @@
 project(bc)
 
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.13)
 
 # Automatically escape macros
 cmake_policy(SET CMP0005 NEW)
